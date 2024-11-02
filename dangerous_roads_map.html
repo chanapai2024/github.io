@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d33fe376ac75b458c606a4f06bc9b812 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+                top: 10px; 
+                right: 10px; 
+                z-index: 1000; 
+                background-color: white;
+                padding: 15px; 
+                border-radius: 10px; 
+                border: 2px solid #666;">
+        <h4 style="color: #FF0000; margin: 0 0 10px 0; text-align: center;">เส้นทางที่เกิดอุบัติเหตุบ่อยที่สุด</h4>
+        <table style="border-collapse: collapse; width: 100%;">
+            <tr style="border-bottom: 2px solid #ddd; background-color: #f5f5f5;">
+                <th style="padding: 8px; text-align: center;">อันดับ</th>
+                <th style="padding: 8px; text-align: left;">เส้นทาง</th>
+                <th style="padding: 8px; text-align: right;">จำนวนครั้ง</th>
+            </tr>
+    
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">1</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #FF0000;
+                               border: 1px solid #666;"></span>
+                    บางปะอิน - แขวงรามอินทรา
+                </td>
+                <td style="padding: 8px; text-align: right;">1,950</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">2</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #0000FF;
+                               border: 1px solid #666;"></span>
+                    แขวงคลองสองต้นนุ่น - พิมพา
+                </td>
+                <td style="padding: 8px; text-align: right;">1,735</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">3</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #00FF00;
+                               border: 1px solid #666;"></span>
+                    หนองข้างคอก - ตะเคียนเตี้ย
+                </td>
+                <td style="padding: 8px; text-align: right;">1,461</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">4</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #FFD700;
+                               border: 1px solid #666;"></span>
+                    อรุณอมรินทร์ - พุทธมณฑลสาย 4
+                </td>
+                <td style="padding: 8px; text-align: right;">1,380</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">5</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #FF1493;
+                               border: 1px solid #666;"></span>
+                    พิมพา - หนองข้างคอก
+                </td>
+                <td style="padding: 8px; text-align: right;">1,203</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">6</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #4B0082;
+                               border: 1px solid #666;"></span>
+                    แขวงรามอินทรา - บางพลี
+                </td>
+                <td style="padding: 8px; text-align: right;">926</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">7</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #FFA500;
+                               border: 1px solid #666;"></span>
+                    สาลี - สุพรรณบุรี
+                </td>
+                <td style="padding: 8px; text-align: right;">697</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">8</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #800000;
+                               border: 1px solid #666;"></span>
+                    มวกเหล็ก - บ่อทอง
+                </td>
+                <td style="padding: 8px; text-align: right;">681</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">9</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #008080;
+                               border: 1px solid #666;"></span>
+                    บางแค - คลองมหาสวัสดิ์
+                </td>
+                <td style="padding: 8px; text-align: right;">652</td>
+            </tr>
+        
+            <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 8px; text-align: center;">10</td>
+                <td style="padding: 8px; text-align: left;">
+                    <span style="display: inline-block; 
+                               width: 20px; 
+                               height: 10px; 
+                               margin-right: 5px;
+                               background-color: #9932CC;
+                               border: 1px solid #666;"></span>
+                    แสมดำ - สะพานข้ามแม่น้ำท่าจีนฝั่งตะวันตก
+                </td>
+                <td style="padding: 8px; text-align: right;">634</td>
+            </tr>
+        
+        </table>
+    </div>
+    
+    
+            <div class="folium-map" id="map_d33fe376ac75b458c606a4f06bc9b812" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_d33fe376ac75b458c606a4f06bc9b812 = L.map(
+                "map_d33fe376ac75b458c606a4f06bc9b812",
+                {
+                    center: [13.7563, 100.5018],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 8,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0f6f73ca054dcb8e3c1e890ecd2021ef = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_0f6f73ca054dcb8e3c1e890ecd2021ef.addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+            var poly_line_13438ed2ce628a82d86343653407122b = L.polyline(
+                [[13.94093193, 100.7102349], [13.84322088, 100.6722414]],
+                {"bubblingMouseEvents": true, "color": "#FF0000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF0000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_cfc1ec7f9c8525499397fcb38c01b608 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_a171dd03f09412f08e086f8646588078 = $(`<div id="html_a171dd03f09412f08e086f8646588078" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 1</b><br><b>เส้นทาง:</b> บางปะอิน - แขวงรามอินทรา<br><b>จำนวนอุบัติเหตุ:</b> 1,950 ครั้ง</div></div>`)[0];
+                popup_cfc1ec7f9c8525499397fcb38c01b608.setContent(html_a171dd03f09412f08e086f8646588078);
+            
+        
+
+        poly_line_13438ed2ce628a82d86343653407122b.bindPopup(popup_cfc1ec7f9c8525499397fcb38c01b608)
+        ;
+
+        
+    
+    
+            var circle_marker_2c003b8869fd39204522b6a6a2ac6124 = L.circleMarker(
+                [13.980922483923077, 100.68727419333334],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_1fb421dc6474b2ded1cac102b4ac3538 = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_f2fbc782285211b50708323f49b78071 = $(`<div id="html_f2fbc782285211b50708323f49b78071" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #FF0000;"><b>1. บางปะอิน - แขวงรามอินทรา</b><br>1,950 ครั้ง</div></div>`)[0];
+                popup_1fb421dc6474b2ded1cac102b4ac3538.setContent(html_f2fbc782285211b50708323f49b78071);
+            
+        
+
+        circle_marker_2c003b8869fd39204522b6a6a2ac6124.bindPopup(popup_1fb421dc6474b2ded1cac102b4ac3538)
+        ;
+
+        
+    
+    
+            var poly_line_48e5d0031d62033a31637b1c894a686e = L.polyline(
+                [[13.54189177, 101.0066727], [13.72966391, 100.7290694]],
+                {"bubblingMouseEvents": true, "color": "#0000FF", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#0000FF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_547f5ad66657aef1dc4f54b4dc54354f = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1f92daaf5041503423984d736f19205f = $(`<div id="html_1f92daaf5041503423984d736f19205f" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 2</b><br><b>เส้นทาง:</b> แขวงคลองสองต้นนุ่น - พิมพา<br><b>จำนวนอุบัติเหตุ:</b> 1,735 ครั้ง</div></div>`)[0];
+                popup_547f5ad66657aef1dc4f54b4dc54354f.setContent(html_1f92daaf5041503423984d736f19205f);
+            
+        
+
+        poly_line_48e5d0031d62033a31637b1c894a686e.bindPopup(popup_547f5ad66657aef1dc4f54b4dc54354f)
+        ;
+
+        
+    
+    
+            var circle_marker_88663529e341c34bd126d91e4ee5ac0a = L.circleMarker(
+                [13.697799938587897, 100.80498373417868],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_de6f70a6480409085c19dd8289226d0d = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_768737f538a422499563533ac0cc778e = $(`<div id="html_768737f538a422499563533ac0cc778e" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #0000FF;"><b>2. แขวงคลองสองต้นนุ่น - พิมพา</b><br>1,735 ครั้ง</div></div>`)[0];
+                popup_de6f70a6480409085c19dd8289226d0d.setContent(html_768737f538a422499563533ac0cc778e);
+            
+        
+
+        circle_marker_88663529e341c34bd126d91e4ee5ac0a.bindPopup(popup_de6f70a6480409085c19dd8289226d0d)
+        ;
+
+        
+    
+    
+            var poly_line_f2109f19dd6708578cceb63bb2d70ece = L.polyline(
+                [[13.06502481, 100.9958982], [13.1855123, 100.9968048]],
+                {"bubblingMouseEvents": true, "color": "#00FF00", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#00FF00", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_c5b25bcd4c6a742d91e29005702e4055 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_24f0c6669f75cfec0835fee34aae0ce5 = $(`<div id="html_24f0c6669f75cfec0835fee34aae0ce5" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 3</b><br><b>เส้นทาง:</b> หนองข้างคอก - ตะเคียนเตี้ย<br><b>จำนวนอุบัติเหตุ:</b> 1,461 ครั้ง</div></div>`)[0];
+                popup_c5b25bcd4c6a742d91e29005702e4055.setContent(html_24f0c6669f75cfec0835fee34aae0ce5);
+            
+        
+
+        poly_line_f2109f19dd6708578cceb63bb2d70ece.bindPopup(popup_c5b25bcd4c6a742d91e29005702e4055)
+        ;
+
+        
+    
+    
+            var circle_marker_8b56603197d9dbfc914275b81db34294 = L.circleMarker(
+                [13.153670478562628, 100.99296347604381],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_32b6e94dce269b9785f6dc09faa5b297 = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_dd31d12f2836bf236234e71b01fcb482 = $(`<div id="html_dd31d12f2836bf236234e71b01fcb482" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #00FF00;"><b>3. หนองข้างคอก - ตะเคียนเตี้ย</b><br>1,461 ครั้ง</div></div>`)[0];
+                popup_32b6e94dce269b9785f6dc09faa5b297.setContent(html_dd31d12f2836bf236234e71b01fcb482);
+            
+        
+
+        circle_marker_8b56603197d9dbfc914275b81db34294.bindPopup(popup_32b6e94dce269b9785f6dc09faa5b297)
+        ;
+
+        
+    
+    
+            var poly_line_aa5a8a59dbc17b20d211db4e5206f588 = L.polyline(
+                [[13.78829749, 100.3448188], [13.78519632, 100.389609]],
+                {"bubblingMouseEvents": true, "color": "#FFD700", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FFD700", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_877d711148a1d1139c1e8ad1cb35ca54 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_56f75926ad7ed6b6a796d16a6a2660ca = $(`<div id="html_56f75926ad7ed6b6a796d16a6a2660ca" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 4</b><br><b>เส้นทาง:</b> อรุณอมรินทร์ - พุทธมณฑลสาย 4<br><b>จำนวนอุบัติเหตุ:</b> 1,380 ครั้ง</div></div>`)[0];
+                popup_877d711148a1d1139c1e8ad1cb35ca54.setContent(html_56f75926ad7ed6b6a796d16a6a2660ca);
+            
+        
+
+        poly_line_aa5a8a59dbc17b20d211db4e5206f588.bindPopup(popup_877d711148a1d1139c1e8ad1cb35ca54)
+        ;
+
+        
+    
+    
+            var circle_marker_a4e97d59c307769907eb7efef60dfba7 = L.circleMarker(
+                [13.784802709333333, 100.40162311804349],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_0558ed3550ad6f9a2161af1eebdc1378 = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_48b6238341474017995bbd3fdda0ad73 = $(`<div id="html_48b6238341474017995bbd3fdda0ad73" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #FFD700;"><b>4. อรุณอมรินทร์ - พุทธมณฑลสาย 4</b><br>1,380 ครั้ง</div></div>`)[0];
+                popup_0558ed3550ad6f9a2161af1eebdc1378.setContent(html_48b6238341474017995bbd3fdda0ad73);
+            
+        
+
+        circle_marker_a4e97d59c307769907eb7efef60dfba7.bindPopup(popup_0558ed3550ad6f9a2161af1eebdc1378)
+        ;
+
+        
+    
+    
+            var poly_line_94cae4a97f287b311c33f7557cda7008 = L.polyline(
+                [[13.18892289, 100.9981432], [13.51588304, 101.0284603]],
+                {"bubblingMouseEvents": true, "color": "#FF1493", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FF1493", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_10a22c1b800a577b5d13878d12bda528 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_21795bfe89fe74da085025e9ea86a1bb = $(`<div id="html_21795bfe89fe74da085025e9ea86a1bb" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 5</b><br><b>เส้นทาง:</b> พิมพา - หนองข้างคอก<br><b>จำนวนอุบัติเหตุ:</b> 1,203 ครั้ง</div></div>`)[0];
+                popup_10a22c1b800a577b5d13878d12bda528.setContent(html_21795bfe89fe74da085025e9ea86a1bb);
+            
+        
+
+        poly_line_94cae4a97f287b311c33f7557cda7008.bindPopup(popup_10a22c1b800a577b5d13878d12bda528)
+        ;
+
+        
+    
+    
+            var circle_marker_388f0936d164083ab5012208b40e9598 = L.circleMarker(
+                [13.471777154505403, 101.01845558420615],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_caaffc064cbb68e4fbfd5a965d238773 = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_9b833a5b6cc7d612774406cdc9a4d13f = $(`<div id="html_9b833a5b6cc7d612774406cdc9a4d13f" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #FF1493;"><b>5. พิมพา - หนองข้างคอก</b><br>1,203 ครั้ง</div></div>`)[0];
+                popup_caaffc064cbb68e4fbfd5a965d238773.setContent(html_9b833a5b6cc7d612774406cdc9a4d13f);
+            
+        
+
+        circle_marker_388f0936d164083ab5012208b40e9598.bindPopup(popup_caaffc064cbb68e4fbfd5a965d238773)
+        ;
+
+        
+    
+    
+            var poly_line_2552230875f46992a589a8bfc07a7b3e = L.polyline(
+                [[13.75771118, 100.6982508], [13.76759298, 100.6927983]],
+                {"bubblingMouseEvents": true, "color": "#4B0082", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4B0082", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_c4aff277ce2c97d3c5f79042ecfb5830 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_3370659ae1ecef9cc43e6d45ee32dcac = $(`<div id="html_3370659ae1ecef9cc43e6d45ee32dcac" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 6</b><br><b>เส้นทาง:</b> แขวงรามอินทรา - บางพลี<br><b>จำนวนอุบัติเหตุ:</b> 926 ครั้ง</div></div>`)[0];
+                popup_c4aff277ce2c97d3c5f79042ecfb5830.setContent(html_3370659ae1ecef9cc43e6d45ee32dcac);
+            
+        
+
+        poly_line_2552230875f46992a589a8bfc07a7b3e.bindPopup(popup_c4aff277ce2c97d3c5f79042ecfb5830)
+        ;
+
+        
+    
+    
+            var circle_marker_89ad95743879221bba99bf4eea21b807 = L.circleMarker(
+                [13.746283013423325, 100.6933693826134],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_d4eb6a1646386f067de08e16ab8b3b0f = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_2c7716a1f718f2b805a3ee7af11cb532 = $(`<div id="html_2c7716a1f718f2b805a3ee7af11cb532" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #4B0082;"><b>6. แขวงรามอินทรา - บางพลี</b><br>926 ครั้ง</div></div>`)[0];
+                popup_d4eb6a1646386f067de08e16ab8b3b0f.setContent(html_2c7716a1f718f2b805a3ee7af11cb532);
+            
+        
+
+        circle_marker_89ad95743879221bba99bf4eea21b807.bindPopup(popup_d4eb6a1646386f067de08e16ab8b3b0f)
+        ;
+
+        
+    
+    
+            var poly_line_349b85db5ebd34a227b3d7e2c09b80a3 = L.polyline(
+                [[14.45902561, 100.1313954], [14.48524204, 100.131193]],
+                {"bubblingMouseEvents": true, "color": "#FFA500", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#FFA500", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_b30947c2b26ee7a83909dfc7d3de59e3 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_5d8b7cb982ffc0f26bc2b853e2bbca32 = $(`<div id="html_5d8b7cb982ffc0f26bc2b853e2bbca32" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 7</b><br><b>เส้นทาง:</b> สาลี - สุพรรณบุรี<br><b>จำนวนอุบัติเหตุ:</b> 697 ครั้ง</div></div>`)[0];
+                popup_b30947c2b26ee7a83909dfc7d3de59e3.setContent(html_5d8b7cb982ffc0f26bc2b853e2bbca32);
+            
+        
+
+        poly_line_349b85db5ebd34a227b3d7e2c09b80a3.bindPopup(popup_b30947c2b26ee7a83909dfc7d3de59e3)
+        ;
+
+        
+    
+    
+            var circle_marker_55bef07f7b6967d8834cea9f582ee6cd = L.circleMarker(
+                [14.436510049253945, 100.15210320674319],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_d728a08cafe88ddeaa26af4a891ea0fa = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_e7ec1c0be78c006b7076970c65e9c591 = $(`<div id="html_e7ec1c0be78c006b7076970c65e9c591" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #FFA500;"><b>7. สาลี - สุพรรณบุรี</b><br>697 ครั้ง</div></div>`)[0];
+                popup_d728a08cafe88ddeaa26af4a891ea0fa.setContent(html_e7ec1c0be78c006b7076970c65e9c591);
+            
+        
+
+        circle_marker_55bef07f7b6967d8834cea9f582ee6cd.bindPopup(popup_d728a08cafe88ddeaa26af4a891ea0fa)
+        ;
+
+        
+    
+    
+            var poly_line_a51e8a0de315002573a246db4767ccb9 = L.polyline(
+                [[14.63464454, 101.2090185], [14.66565356, 101.4257678]],
+                {"bubblingMouseEvents": true, "color": "#800000", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#800000", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_566d83c059634e9a6fdb04580225a320 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_65c20179066061769ad97007f9f50d8e = $(`<div id="html_65c20179066061769ad97007f9f50d8e" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 8</b><br><b>เส้นทาง:</b> มวกเหล็ก - บ่อทอง<br><b>จำนวนอุบัติเหตุ:</b> 681 ครั้ง</div></div>`)[0];
+                popup_566d83c059634e9a6fdb04580225a320.setContent(html_65c20179066061769ad97007f9f50d8e);
+            
+        
+
+        poly_line_a51e8a0de315002573a246db4767ccb9.bindPopup(popup_566d83c059634e9a6fdb04580225a320)
+        ;
+
+        
+    
+    
+            var circle_marker_8b830d72e129b3209ca3c95cf0133c9f = L.circleMarker(
+                [14.654679652129222, 101.34008178325992],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_9c5e3e6ebfb08384b2e15bcaf00183a3 = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_cfa3a524626ad4a9119cc4e60e4f96c3 = $(`<div id="html_cfa3a524626ad4a9119cc4e60e4f96c3" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #800000;"><b>8. มวกเหล็ก - บ่อทอง</b><br>681 ครั้ง</div></div>`)[0];
+                popup_9c5e3e6ebfb08384b2e15bcaf00183a3.setContent(html_cfa3a524626ad4a9119cc4e60e4f96c3);
+            
+        
+
+        circle_marker_8b830d72e129b3209ca3c95cf0133c9f.bindPopup(popup_9c5e3e6ebfb08384b2e15bcaf00183a3)
+        ;
+
+        
+    
+    
+            var poly_line_9d0a016eb9cb04e47e482907b85a651c = L.polyline(
+                [[13.75434516, 100.4059383], [13.77369518, 100.4080331]],
+                {"bubblingMouseEvents": true, "color": "#008080", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#008080", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_69a9ac2eda4465ff9d0533c067653df5 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_1943d73a94d35ac5f25d1d9ca7b7e91a = $(`<div id="html_1943d73a94d35ac5f25d1d9ca7b7e91a" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 9</b><br><b>เส้นทาง:</b> บางแค - คลองมหาสวัสดิ์<br><b>จำนวนอุบัติเหตุ:</b> 652 ครั้ง</div></div>`)[0];
+                popup_69a9ac2eda4465ff9d0533c067653df5.setContent(html_1943d73a94d35ac5f25d1d9ca7b7e91a);
+            
+        
+
+        poly_line_9d0a016eb9cb04e47e482907b85a651c.bindPopup(popup_69a9ac2eda4465ff9d0533c067653df5)
+        ;
+
+        
+    
+    
+            var circle_marker_9755e7643488c0c1b7e5aefc9adcbb75 = L.circleMarker(
+                [13.727876243205522, 100.40691472377301],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_67531fc60eb065ee1439c454b242c16b = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_71e54f5a0f4d401c48e6b3ad1ca62a88 = $(`<div id="html_71e54f5a0f4d401c48e6b3ad1ca62a88" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #008080;"><b>9. บางแค - คลองมหาสวัสดิ์</b><br>652 ครั้ง</div></div>`)[0];
+                popup_67531fc60eb065ee1439c454b242c16b.setContent(html_71e54f5a0f4d401c48e6b3ad1ca62a88);
+            
+        
+
+        circle_marker_9755e7643488c0c1b7e5aefc9adcbb75.bindPopup(popup_67531fc60eb065ee1439c454b242c16b)
+        ;
+
+        
+    
+    
+            var poly_line_2ce88b31b052d43e774526428a42d025 = L.polyline(
+                [[13.57524637, 100.2983039], [13.56892625, 100.2863413]],
+                {"bubblingMouseEvents": true, "color": "#9932CC", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#9932CC", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_ae7e609292f745c3c8934c5f1f2b0809 = L.popup({"maxWidth": 300});
+
+        
+            
+                var html_4021680a100591c7a7453de23e04fb60 = $(`<div id="html_4021680a100591c7a7453de23e04fb60" style="width: 100.0%; height: 100.0%;"><div style="font-size: 14px;"><b>อันดับ 10</b><br><b>เส้นทาง:</b> แสมดำ - สะพานข้ามแม่น้ำท่าจีนฝั่งตะวันตก<br><b>จำนวนอุบัติเหตุ:</b> 634 ครั้ง</div></div>`)[0];
+                popup_ae7e609292f745c3c8934c5f1f2b0809.setContent(html_4021680a100591c7a7453de23e04fb60);
+            
+        
+
+        poly_line_2ce88b31b052d43e774526428a42d025.bindPopup(popup_ae7e609292f745c3c8934c5f1f2b0809)
+        ;
+
+        
+    
+    
+            var circle_marker_d2c4680066a05f43a48e29ae67195c4b = L.circleMarker(
+                [13.578510084810725, 100.31263155757098],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "transparent", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1, "stroke": true, "weight": 3}
+            ).addTo(map_d33fe376ac75b458c606a4f06bc9b812);
+        
+    
+        var popup_a49a0e2a1fad7202ee29b0a27448ccbe = L.popup({"maxWidth": "100%", "permanent": true});
+
+        
+            
+                var html_5160c401a3bebd4b53695b6ec14897d6 = $(`<div id="html_5160c401a3bebd4b53695b6ec14897d6" style="width: 100.0%; height: 100.0%;"><div style="background-color: white; padding: 5px; border: 2px solid #9932CC;"><b>10. แสมดำ - สะพานข้ามแม่น้ำท่าจีนฝั่งตะวันตก</b><br>634 ครั้ง</div></div>`)[0];
+                popup_a49a0e2a1fad7202ee29b0a27448ccbe.setContent(html_5160c401a3bebd4b53695b6ec14897d6);
+            
+        
+
+        circle_marker_d2c4680066a05f43a48e29ae67195c4b.bindPopup(popup_a49a0e2a1fad7202ee29b0a27448ccbe)
+        ;
+
+        
+    
+</script>
+</html>
